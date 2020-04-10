@@ -37,7 +37,7 @@ public class Frog extends Sprite {
         setX(x);
         setY(y);
         //set collision rectangle
-        frogObject = new RectangleMapObject(x,y, 64, 64);
+        frogObject = new Rectangle(x,y, 64, 64);
 
         //split frog sprite
         TextureRegion[][] temp = TextureRegion.split(frogSheet,
@@ -112,4 +112,6 @@ return false;
     }
 */
 
+
+//test commit 2
 }
