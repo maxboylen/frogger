@@ -23,6 +23,7 @@ public class Frog extends Sprite {
     private static final int FRAME_COLS = 4;
     private static final int FRAME_ROWS = 2;
     Texture frogSheet = new Texture(Gdx.files.internal("froggy.png"));
+    Texture splat = new Texture(Gdx.files.internal("splat.png"));
     TextureRegion[] frogFrames = new TextureRegion[FRAME_COLS * FRAME_ROWS]; //this might not be the right way to declare
     Animation hopAnimation;
     TextureRegion currentFrame;
@@ -38,6 +39,7 @@ public class Frog extends Sprite {
         setY(y);
         //set collision rectangle
         frogObject = new Rectangle(x,y, 64, 64);
+
 
         //split frog sprite
         TextureRegion[][] temp = TextureRegion.split(frogSheet,
@@ -69,7 +71,7 @@ public class Frog extends Sprite {
 
     public void update() {
         //update collision box
-        frogObject.set(this.getX(), this.getY(), 64, 64);
+        frogObject.set(getX(), getY(), 64, 64);
 
         //check for collision
         checkCollision (PlayScreen.carList);
@@ -78,8 +80,10 @@ public class Frog extends Sprite {
 
     public void checkCollision(List<Car> carList) {
         for (int i =0; i<carList.size(); i++) {
-            if (isColliding(carList.get(i), this)) {
-                //death screem`
+            if (isColliding(carList.get(i), this) == true) {
+                //death screen
+                setTexture(splat);
+                setX(0);
             }
 
 
@@ -87,8 +91,11 @@ public class Frog extends Sprite {
     }
 
     public boolean isColliding(Car car, Frog player) {
-
-return false;
+        if (player.frogObject.overlaps(car.carObject)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

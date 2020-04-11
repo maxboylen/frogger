@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MyGdxGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Sprites.Car;
@@ -50,8 +51,7 @@ public class PlayScreen implements Screen {
     private Vector3 touchPos;
 
     //car variables
-    Car car1 = new Car(200, 200);
-    static public List<Car> carList;
+    static public ArrayList<Car> carList = new ArrayList<Car>();
 
 
     public PlayScreen(MyGdxGame game) {
@@ -104,7 +104,7 @@ public class PlayScreen implements Screen {
          */
 
         //create cars
-        car1 = new Car(600,200);
+        carList.add(new Car(600,200));
 
 
 
@@ -122,7 +122,10 @@ public class PlayScreen implements Screen {
         gameCam.update();
         //draw what camera can see
         renderer.setView(gameCam);
-        car1.update();
+        for (int i =0; i<carList.size(); i++) {
+            carList.get(i).update();
+        }
+//        car1.update();
 
 
     }
@@ -186,7 +189,11 @@ public class PlayScreen implements Screen {
         this.game.batch.begin();
 //        this.game.batch.draw(currentFrame,playerSprite.getX(),playerSprite.getY());
         player.render();
-        car1.render();
+
+        for (int i =0; i<carList.size(); i++) {
+            carList.get(i).render();
+        }
+
         this.game.batch.end();
 
 
