@@ -12,13 +12,16 @@ import Screens.PlayScreen;
 
 public class Car extends Sprite {
     public static final float carSpeed = 300f;
-    Texture carTexture = new Texture(Gdx.files.internal("car.png"));
+    Texture carTexture = new Texture(Gdx.files.internal("carBlue.png"));
+
     Rectangle carObject;
 
     public Car (int lane, int pos) {
 //        this.setX(lane * (find lane dimension));
 //        this.setY(pos * (find pos dimension));
 
+
+        this.setTexture(carTexture);
         this.setX(lane);
         this.setY(pos);
         carObject = new Rectangle(getX(), getY(), 75, 32);
@@ -28,7 +31,9 @@ public class Car extends Sprite {
 
     public void render() {
 
-        MyGdxGame.batch.draw(carTexture, getX(), getY());
+
+//        MyGdxGame.batch.draw(carTexture, getX(), getY());
+        MyGdxGame.batch.draw(getTexture(), getX(), getY());
     }
 
     public void update() {

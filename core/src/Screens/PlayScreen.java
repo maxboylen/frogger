@@ -105,6 +105,7 @@ public class PlayScreen implements Screen {
 
         //create cars
         carList.add(new Car(600,200));
+//        carList.get(0).flip(false, true);
 
 
 
